@@ -294,7 +294,10 @@ icon_mappings:
 # Format breakdown:
 # [entry_sep][current_temp][entry_sep][hour][field_sep][icon][field_sep][temp][field_sep][precip][entry_sep]...
 
-# Example with preamble "WEATHER:":
+# Example with preamble "WEATHER:" (preamble replaces leading #):
+# WEATHER:76#1pm,9,75,0.0#2pm,9,76,0.0#3pm,9,76,0.0#
+#
+# Example with preamble "WEATHER:#" (includes # in preamble):
 # WEATHER:#76#1pm,9,75,0.0#2pm,9,76,0.0#3pm,9,76,0.0#
 
 # Example with custom separators (entry_sep: "|", field_sep: ":"):
