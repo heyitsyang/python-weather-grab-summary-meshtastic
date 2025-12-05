@@ -147,8 +147,12 @@ weather-formatter --fields hour,icon,temp,humidity,wind_speed
 #### Using a Preamble
 
 ```bash
-# Add a prefix to the output
+# Add a prefix to the output (replaces the leading #)
 weather-formatter --preamble "WEATHER:"
+# Output: WEATHER:76#1pm,9,75,0.0#...#
+
+# Or include the # in the preamble if desired
+weather-formatter --preamble "WEATHER:#"
 # Output: WEATHER:#76#1pm,9,75,0.0#...#
 ```
 
@@ -322,8 +326,10 @@ If you were previously using OpenWeather API 2.5, note the following changes:
 The output follows this structure:
 
 ```
-[preamble][entry_sep][current_temp][entry_sep][forecast_1][entry_sep][forecast_2]...[entry_sep]
+[preamble or entry_sep][current_temp][entry_sep][forecast_1][entry_sep][forecast_2]...[entry_sep]
 ```
+
+**Note**: The preamble replaces the leading entry separator. If no preamble is configured, output starts with the entry separator.
 
 Each forecast entry contains the configured fields separated by the field separator:
 
@@ -338,7 +344,12 @@ Each forecast entry contains the configured fields separated by the field separa
 #76#1pm,9,75,0.0#2pm,9,76,0.0#3pm,9,76,0.0#4pm,9,75,0.0#5pm,9,74,0.0#
 ```
 
-**With Preamble:**
+**With Preamble "WEATHER:":**
+```
+WEATHER:76#1pm,9,75,0.0#2pm,9,76,0.0#3pm,9,76,0.0#
+```
+
+**With Preamble "WEATHER:#":**
 ```
 WEATHER:#76#1pm,9,75,0.0#2pm,9,76,0.0#3pm,9,76,0.0#
 ```
