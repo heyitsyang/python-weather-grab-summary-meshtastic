@@ -270,8 +270,8 @@ class WeatherClient:
             hour_12 = dt.strftime("%-I%p").lower()
             weather_info = item.get("weather", [{}])[0]
 
-            # Calculate precipitation probability
-            precip_prob = item.get("pop", 0.0) * 100  # Convert to percentage
+            # Calculate precipitation amount (rain + snow) in inches
+            precip_amount = item.get("rain", {}).get("1h", 0.0) + item.get("snow", {}).get("1h", 0.0)
 
             weather_data = WeatherData(
                 timestamp=dt,
@@ -280,7 +280,7 @@ class WeatherClient:
                 feels_like=item.get("feels_like", 0.0),
                 condition=weather_info.get("description", "unknown"),
                 condition_code=weather_info.get("id", 0),
-                precip=precip_prob,
+                precip=precip_amount,
                 humidity=item.get("humidity", 0),
                 wind_speed=item.get("wind_speed", 0.0),
                 wind_direction=item.get("wind_deg", 0),
